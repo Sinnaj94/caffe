@@ -19,7 +19,7 @@ __global__ void ClipForward(const int n, const double* in, double* out,
   }
 }
 
-//template <typename Dtype>
+template <typename Dtype>
 void ClipLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
     const vector<Blob<Dtype>*>& top) {
   const Dtype* bottom_data = bottom[0]->gpu_data();
@@ -33,7 +33,7 @@ void ClipLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
   CUDA_POST_KERNEL_CHECK;
 }
 
-//template <typename Dtype>
+template <typename Dtype>
 __global__ void ClipBackward(const int n, const Dtype* in_diff,
     const Dtype* in_data, Dtype* out_diff, Dtype p_min, Dtype p_max) {
   CUDA_KERNEL_LOOP(index, n) {
@@ -42,7 +42,7 @@ __global__ void ClipBackward(const int n, const Dtype* in_diff,
   }
 }
 
-//template <typename Dtype>
+template <typename Dtype>
 void ClipLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
     const vector<bool>& propagate_down,
     const vector<Blob<Dtype>*>& bottom) {
