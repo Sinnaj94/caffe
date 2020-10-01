@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "caffe/layers/clip_layer.hpp"
+//#include "caffe/layers/clip_layer.hpp"
 #include "caffe/util/math_functions.hpp"
 
 namespace caffe {
@@ -18,7 +18,7 @@ __global__ void ClipForward(const int n, const double* in, double* out,
     out[index] = fmax(p_min, fmin(in[index], p_max));
   }
 }
-
+/*
 template <typename Dtype>
 void ClipLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
     const vector<Blob<Dtype>*>& top) {
@@ -32,7 +32,7 @@ void ClipLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
       count, bottom_data, top_data, p_min, p_max);
   CUDA_POST_KERNEL_CHECK;
 }
-
+*/
 template <typename Dtype>
 __global__ void ClipBackward(const int n, const Dtype* in_diff,
     const Dtype* in_data, Dtype* out_diff, Dtype p_min, Dtype p_max) {
@@ -41,7 +41,7 @@ __global__ void ClipBackward(const int n, const Dtype* in_diff,
             in_data[index] >= p_min && in_data[index] <= p_max);
   }
 }
-
+/*
 template <typename Dtype>
 void ClipLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
     const vector<bool>& propagate_down,
@@ -58,10 +58,11 @@ void ClipLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
         count, top_diff, bottom_data, bottom_diff, p_min, p_max);
     CUDA_POST_KERNEL_CHECK;
   }
+*/
 }
 
 
-INSTANTIATE_LAYER_GPU_FUNCS(ClipLayer);
+//INSTANTIATE_LAYER_GPU_FUNCS(ClipLayer);
 
 
 }  // namespace caffe
