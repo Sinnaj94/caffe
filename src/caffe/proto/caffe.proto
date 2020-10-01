@@ -322,7 +322,7 @@ message ParamSpec {
 // NOTE
 // Update the next available ID when you add a new LayerParameter field.
 //
-// LayerParameter next available layer-specific ID: 149 (last added: clip_param)
+// LayerParameter next available layer-specific ID: 151 (last added: nms_param)
 message LayerParameter {
   optional string name = 1; // the layer name
   optional string type = 2; // the layer type
@@ -395,6 +395,7 @@ message LayerParameter {
   optional HDF5OutputParameter hdf5_output_param = 113;
   optional HingeLossParameter hinge_loss_param = 114;
   optional ImageDataParameter image_data_param = 115;
+  optional ImResizeParameter imresize_param = 150;
   optional InfogainLossParameter infogain_loss_param = 116;
   optional InnerProductParameter inner_product_param = 117;
   optional InputParameter input_param = 143;
@@ -402,6 +403,7 @@ message LayerParameter {
   optional LRNParameter lrn_param = 118;
   optional MemoryDataParameter memory_data_param = 119;
   optional MVNParameter mvn_param = 120;
+  optional NmsParameter nms_param = 151;
   optional ParameterParameter parameter_param = 145;
   optional PoolingParameter pooling_param = 121;
   optional PowerParameter power_param = 122;
@@ -1446,4 +1448,20 @@ message PReLUParameter {
   optional FillerParameter filler = 1;
   // Whether or not slope parameters are shared across channels.
   optional bool channel_shared = 2 [default = false];
+}
+
+// CPM extra code: new layers description
+message NmsParameter {
+  optional float threshold = 1 [default = 0.5];
+  optional uint32 num_peak = 2 [default = 100];
+  optional uint32 max_peaks = 3 [default = 20];
+  optional uint32 num_parts = 4 [default = 15];
+}
+
+message ImResizeParameter {
+  optional uint32 target_spatial_width = 1 [default = 368];
+  optional uint32 target_spatial_height = 2 [default = 368];
+  optional float factor = 3 [default = 0];
+  optional float start_scale = 4 [default = 1];
+  optional float scale_gap = 5 [default = 0.1];
 }
