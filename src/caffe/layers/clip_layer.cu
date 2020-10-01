@@ -59,8 +59,9 @@ void ClipLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
         count, top_diff, bottom_data, bottom_diff, p_min, p_max);
     CUDA_POST_KERNEL_CHECK;
   }
-*/
+
 }
+*/
 
 
 //INSTANTIATE_LAYER_GPU_FUNCS(ClipLayer);
